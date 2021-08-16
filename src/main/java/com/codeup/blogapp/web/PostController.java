@@ -39,13 +39,13 @@ public class PostController {
         System.out.println(newPost.getContent());
     }
 
-    @PutMapping({"/{id}"})
+    @PutMapping({"{id}"})
     private void updatePost(@PathVariable Long id, @RequestBody Post post){
         System.out.println(post);
         System.out.println(id);
     }
 
-    @DeleteMapping({"/{id}"})
+    @DeleteMapping({"{id}"})
     private void deletePost(@PathVariable Long id){
         System.out.println(id);
     }
