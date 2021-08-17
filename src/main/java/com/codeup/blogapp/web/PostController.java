@@ -13,6 +13,8 @@ public class PostController {
 
     @RequestMapping()
     private List<Post> getPost(){
+
+
         return new ArrayList<Post>(){{
             add(new Post(1L, "new post", "What a post"));
             add(new Post(2L, "second post", "What a second post"));
