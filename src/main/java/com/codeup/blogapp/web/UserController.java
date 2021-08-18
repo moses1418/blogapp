@@ -11,23 +11,26 @@ import java.util.List;
 @RequestMapping(value ="/api/users", headers ="Accept=application/json" )
 public class UserController {
 
+    User user = new User(1l, "moizez", "moizez@erikisnotcool.com", "12345", User.Role.USER, null);
+
     @GetMapping
     private List<User> getUsers() {
         return new ArrayList<>() {{
-            add(new User(28376L, "moizez", "moizez@cod.com","fgjdjd", User.Role.USER));
+            add(new User(28376L, "moizez", "moizez@cod.com","fgjdjd", User.Role.USER, null));
         }};
     }
 
     @GetMapping("/{id}")
     private User getUsersByID(@PathVariable Long id) {
+
         if (id == 1) {
-            return new User(1L, "moizez again", "moizez@tarkov.com", "hfaiehf", User.Role.USER);
+            return new User(1L, "moizez again", "moizez@tarkov.com", "hfaiehf", User.Role.USER, null);
         } else{
             return null;
         }
     }
 
-    @PostMapping("/users")
+    @PostMapping()
     private void createUser(@RequestBody User user) { System.out.println(user); }
 
     @PutMapping("{id}")

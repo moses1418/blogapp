@@ -15,6 +15,8 @@ export default function PostIndex(props) {
         ${props.posts.map(post => `
         <div class="post">
     
+    <h2>${post.user.username}</h2>
+    
             <h3 class="edit-title" data-id=${post.id}>${post.title}</h3>
             <h4 class="edit-content">${post.content}</h4>
     

@@ -8,7 +8,7 @@ public class Post {
 
 
 
-    public Post(Long id, String title, String content) {
+    public Post(Long id, String title, String content, User user) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -38,5 +38,13 @@ public class Post {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
