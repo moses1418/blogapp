@@ -4,6 +4,8 @@ import com.codeup.blogapp.data.User;
 import org.springframework.web.bind.annotation.*;
 
 import javax.management.relation.Role;
+import javax.validation.Valid;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,4 +45,33 @@ public class UserController {
     private void deleteUsers(@PathVariable Long id) {
         System.out.println(id);
     }
+
+    @PostMapping("/findByUsername")
+    private void findByUsername(@RequestParam String username) {
+        System.out.println("Username is: " + username);
+    }
+
+    @PostMapping("/findByEmail")
+    private void findByEmail(@RequestParam String email) {
+        System.out.println("Email is: " + email);
+    }
+
+    @PutMapping({"{id}/updatePassword"})
+    private void updatePassword(@PathVariable Long id, @RequestParam(required = false) String oldPassword, @Valid @Size(min = 3) @RequestParam String newPassword){
+        if(!newPassword.equals(oldPassword)){
+            System.out.println("Password for id: " + id + " has been updated!");
+            System.out.println("Old password: " + oldPassword);
+            System.out.println("New password: " + newPassword);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
 }

@@ -6,32 +6,51 @@ export default function PostIndex(props) {
     <h1>Posts Page</h1>
     </header>
     <main>
-        <!--    MAKE CREATE FORM HERE    -->
         <form>
             <input type="text" id="title">
             <input type="text" id="content">
             <button id="create-post-btn" type="button">Add Post</button>
         </form>
-        ${props.posts.map(post => `
-        <div class="post">
-    
-    <h2>${post.user.username}</h2>
-    
-            <h3 class="edit-title" data-id=${post.id}>${post.title}</h3>
-            <h4 class="edit-content">${post.content}</h4>
-    
-            <!--   add edit, delete buttons, add edit form   -->
-    
-            <button class="edit-post-btn" data-id="${post.id}">Edit</button>
-            <button class="delete-post-btn" data-id="${post.id}">Delete</button>
+        <div>
+            ${getPostsComponent(props.posts)}
         </div>
-        `).join('')}
-    
     </main>
     `;
 }
 
-export function postEvents() {
+function getPostsComponent(posts){
+
+    return posts.map(post =>
+    {
+        console.log(post);
+        return `
+            <div class="post">
+                <h3 class="edit-title" data-id=${post.id}>${post.title}</h3>
+                <h4 class="edit-content">${post.content}</h4>
+                <h4 class="username">Posted By: ${post.user.username}</h4>
+                <div class="categories">
+                ${getCategoriesComponent(post.categories)}
+                </div>
+            
+                <button class="edit-post-btn" data-id="${post.id}">Edit</button>
+                <button class="delete-post-btn" data-id="${post.id}">Delete</button>
+            </div>
+            `}).join('');
+}
+
+function getCategoriesComponent(categories){
+
+    console.log(categories);
+    return categories.map(category =>
+        `
+            <span>#${category.name}</span>
+        `
+    ).join('');
+
+}
+
+
+export function PostsEvent() {
 
     // call function for create button listener
 
@@ -94,6 +113,7 @@ function editEvent(){
 
 }
 
+
 function submitEditEvent(){
 
     let post = {
@@ -145,6 +165,3 @@ function deleteEvent(){
     })
 
 }
-
-
-
