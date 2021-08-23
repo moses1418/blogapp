@@ -1,10 +1,14 @@
-package com.codeup.blogapp.data;
+package com.codeup.blogapp.data.Post;
+
+import com.codeup.blogapp.data.Category.Category;
+import com.codeup.blogapp.data.User.User;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(name = "posts")
+@Table(name="posts")
 public class Post {
 
     @Id
@@ -17,10 +21,18 @@ public class Post {
     @Column(nullable = false)
     private String content;
 
+    @ManyToOne
+    @JsonManagedReference
+    @JoinColumn(name = "user_id")
     private User user;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="post_category",
+            joinColumns={@JoinColumn(name="post_id")},
+            inverseJoinColumns={@JoinColumn(name="category_id")}
+    )
     private Collection<Category> categories;
-
 
     public Post(Long id, String title, String content, User user, Collection<Category> categories) {
         this.id = id;
@@ -30,6 +42,7 @@ public class Post {
         this.categories = categories;
     }
 
+    public Post(){}
 
     public Long getId() {
         return id;

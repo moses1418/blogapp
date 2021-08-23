@@ -1,9 +1,8 @@
 package com.codeup.blogapp.web;
 
-import com.codeup.blogapp.data.User;
+import com.codeup.blogapp.data.User.User;
 import org.springframework.web.bind.annotation.*;
 
-import javax.management.relation.Role;
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
