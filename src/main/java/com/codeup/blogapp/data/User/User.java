@@ -1,19 +1,19 @@
 package com.codeup.blogapp.data.User;
 
 import com.codeup.blogapp.data.Post.Post;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.util.Collection;
 
 @Entity
-@Table(name = "users")
+@Table(name="users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(nullable = false)
     private String username;
@@ -29,24 +29,13 @@ public class User {
     @Column(nullable = false)
     private Role role = Role.USER;
 
-    @OneToMany(mappedBy = "id")
-    @JsonBackReference
+    @OneToMany(mappedBy = "user")
+    @JsonManagedReference
     private Collection<Post> posts;
-
 
     public enum Role {USER, ADMIN};
 
-
-    public User() {
-    }
-
-    public User(String username){
-        this.username = username;
-
-    }
-
-
-    public User(long id, String username, String email, String password, Role role, Collection<Post> posts) {
+    public User(Long id, String username, String email, String password, Role role, Collection<Post> posts) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -55,12 +44,19 @@ public class User {
         this.posts = posts;
     }
 
+    public User(String username){
+        this.username = username;
+    }
 
-    public long getId() {
+    public User(){
+
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
