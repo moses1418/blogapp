@@ -1,0 +1,7 @@
+fetch("myfakeurl.com)
+.then(data => { return data.json);
+
+
+method: 'POST',
+headers: 'content-type':'applicatio/json',
+body: JSON.stringify(data)

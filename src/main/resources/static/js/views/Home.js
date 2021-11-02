@@ -8,6 +8,8 @@ export default function Home(props) {
             <div>
                 <p>
                     This is the home page text.
+                    
+                    
                 </p>    
             </div>
         </main>
